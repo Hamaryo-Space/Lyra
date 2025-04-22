@@ -10,7 +10,8 @@ from seminar import setup_seminar_command
 from help import setup_help_command
 from discord_rpc import LyraPresence
 from unanimous_game import setup_unanimous_game_command
-from server_stats import setup_server_stats_command  # 追加
+from server_stats import setup_server_stats_command
+from about import setup_about_commands  # 追加
 
 # 環境変数の読み込み
 load_dotenv()
@@ -46,7 +47,8 @@ setup_schedule_command(tree)
 setup_seminar_command(tree)
 setup_help_command(tree)
 setup_unanimous_game_command(tree)
-setup_server_stats_command(tree)  # 追加
+setup_server_stats_command(tree)
+setup_about_commands(tree)  # 追加
 
 # Botを実行
 if __name__ == "__main__":

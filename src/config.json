@@ -1,4 +1,5 @@
 {
   "use_embed": false,
-  "default_color": "#3498db"
+  "default_color": "#3498db",
+  "version": "1.0.0"
 }

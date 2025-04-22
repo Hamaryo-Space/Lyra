@@ -47,6 +47,14 @@ def setup_help_command(tree):
             inline=False,
         )
 
+        # Botの紹介コマンドの説明を追加
+        embed.add_field(
+            name="/bot",
+            value="Botに関する情報を表示します\n"
+            "サブコマンド: `紹介`(Botの詳細), `問い合わせ`(開発者への連絡)",
+            inline=False,
+        )
+
         embed.add_field(
             name="/help", value="このヘルプメッセージを表示します", inline=False
         )
