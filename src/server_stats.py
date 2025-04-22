@@ -427,6 +427,6 @@ def setup_server_stats_command(tree):
         except:
             pass
 
-        await interaction.response.send_message(embed=embed)
+        await interaction.response.send_message(embed=embed, silent=True)
 
     tree.add_command(stats_group)

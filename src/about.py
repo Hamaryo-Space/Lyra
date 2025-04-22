@@ -114,7 +114,9 @@ class AboutCommands:
             text="問い合わせ時刻: " + datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         )
 
-        await interaction.response.send_message(embed=embed, ephemeral=True)
+        await interaction.response.send_message(
+            embed=embed, ephemeral=True, silent=True
+        )
 
         # ここで開発者にDMを送るか、専用のチャンネルに投稿するロジックを追加できます
         # 今回は実装していませんが、必要に応じて追加可能です
