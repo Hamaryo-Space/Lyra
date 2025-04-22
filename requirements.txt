@@ -1,5 +1,4 @@
-discord.py==2.3.2; sys_platform != 'linux'
-discord.py[novice]==2.3.2; sys_platform == 'linux'
+discord.py==2.3.2
 python-dotenv==1.0.1
 uvicorn==0.29.0
 fastapi==0.110.1
