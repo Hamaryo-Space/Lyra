@@ -10,15 +10,16 @@ class AboutCommands:
         # Botの説明文
         self.bot_description = """
 
-このBotは文教大学の卒業研究ゼミグループ用に開発された専用ツールです。
+このBotはゼミグループ用に開発された専用Botです。
 ゼミ日程の管理、ミニゲーム、サーバー統計など様々な機能を提供します。
 
 **【主な機能】**
 • ゼミ日程の表示と管理
 • 大学の年間行事予定の表示
-• サーバー統計情報の表示
+• サーバー統計情報の表示（※動作未確認）
 • 運勢占い
-• 全員一致ゲーム
+• 全員一致ゲーム（※動作未確認）
+• 問い合わせ機能（開発者へのDM送信）
 
 **【問い合わせ先】**
 バグ報告や機能提案がございましたら、開発者 <@742627994958561302> までご連絡ください。
@@ -89,9 +90,9 @@ class AboutCommands:
         )
         embed.set_footer(text="Developed by Hamaryo-Space")
 
-        await interaction.response.send_message(embed=embed)
+        await interaction.response.send_message(embed=embed, silent=True)
 
-    # 開発者への問い合わせコマンド
+    # 開発者への問い合わせコマンド - クラス内に移動
     async def contact_developer(
         self, interaction: discord.Interaction, メッセージ: str
     ):
@@ -114,12 +115,71 @@ class AboutCommands:
             text="問い合わせ時刻: " + datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         )
 
-        await interaction.response.send_message(
-            embed=embed, ephemeral=True, silent=True
-        )
+        # ユーザーに確認メッセージを送信
+        await interaction.response.send_message(embed=embed, ephemeral=True)
 
-        # ここで開発者にDMを送るか、専用のチャンネルに投稿するロジックを追加できます
-        # 今回は実装していませんが、必要に応じて追加可能です
+        # 開発者にDMを送信
+        try:
+            # 開発者のIDを指定
+            developer_id = 742627994958561302
+            developer_user = await interaction.client.fetch_user(developer_id)
+
+            # 開発者へのDM用Embed作成
+            dev_embed = discord.Embed(
+                title="新しい問い合わせが届きました",
+                description="Botを通じて新しい問い合わせが届きました。",
+                color=discord.Color.blue(),
+                timestamp=datetime.now(),
+            )
+
+            # 問い合わせ内容を追加
+            dev_embed.add_field(name="メッセージ内容", value=メッセージ, inline=False)
+
+            # 送信者の情報
+            dev_embed.add_field(
+                name="送信者情報",
+                value=f"名前: {interaction.user.name}\n"
+                f"ID: {interaction.user.id}\n"
+                f"サーバー: {interaction.guild.name if interaction.guild else 'DM'}\n"
+                f"チャンネル: {interaction.channel.name if interaction.channel else 'N/A'}",
+                inline=False,
+            )
+
+            # 返信用の情報
+            dev_embed.add_field(
+                name="返信方法",
+                value=f"返信する場合はDMで `{interaction.user.name}` さん（ID: {interaction.user.id}）にメッセージを送信してください。",
+                inline=False,
+            )
+
+            # 送信者のアイコンがあれば設定
+            if interaction.user.avatar:
+                dev_embed.set_thumbnail(url=interaction.user.avatar.url)
+
+            # フッター
+            dev_embed.set_footer(text="Lyra Bot - 問い合わせシステム")
+
+            # DMを送信
+            await developer_user.send(embed=dev_embed)
+
+            # 管理用チャンネルにもログを残す場合（オプション）
+            # log_channel_id = 管理用チャンネルID
+            # log_channel = interaction.client.get_channel(log_channel_id)
+            # if log_channel:
+            #     await log_channel.send(embed=dev_embed)
+
+        except Exception as e:
+            # DMの送信に失敗した場合のエラーログ
+            print(f"開発者へのDM送信に失敗しました: {e}")
+
+            # 失敗通知をユーザーに送信する場合（オプション）
+            try:
+                await interaction.followup.send(
+                    "開発者への通知送信中にエラーが発生しました。別の方法でお問い合わせください。",
+                    ephemeral=True,
+                )
+            except:
+                pass
 
 
 # コマンド設定関数

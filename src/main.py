@@ -34,7 +34,7 @@ async def on_ready():
     print("スラッシュコマンドを同期しました")
 
     # RPCステータスを設定
-    await presence.set_simple_status("Bot")
+    await presence.set_simple_status("/help")
     # または他の例:
     # await presence.update_activity_counter(len(client.guilds))
     # await presence.update_presence()
