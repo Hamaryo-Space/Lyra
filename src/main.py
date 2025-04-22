@@ -8,7 +8,8 @@ from fortune import setup_fortune_command
 from schedule import setup_schedule_command
 from seminar import setup_seminar_command
 from help import setup_help_command
-from discord_rpc import LyraPresence  # 追加
+from discord_rpc import LyraPresence
+from unanimous_game import setup_unanimous_game_command  # 追加
 
 # 環境変数の読み込み
 load_dotenv()
@@ -41,6 +42,7 @@ setup_fortune_command(tree)
 setup_schedule_command(tree)
 setup_seminar_command(tree)
 setup_help_command(tree)
+setup_unanimous_game_command(tree)  # 追加
 
 # Botを実行
 if __name__ == "__main__":

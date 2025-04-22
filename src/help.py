@@ -31,6 +31,14 @@ def setup_help_command(tree):
             name="/今日の運勢", value="今日のあなたの運勢を占います", inline=False
         )
 
+        # 全員一致ゲームの説明を追加
+        embed.add_field(
+            name="/全員一致",
+            value="全員一致ゲームを遊べます\n"
+            "サブコマンド: `開始`(ゲームを開始), `ヘルプ`(遊び方の説明)",
+            inline=False,
+        )
+
         embed.add_field(
             name="/help", value="このヘルプメッセージを表示します", inline=False
         )
