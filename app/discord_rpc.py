@@ -1,5 +1,5 @@
 import discord
-from datetime import datetime, timedelta
+from datetime import datetime
 
 
 # Discord RPCを設定するためのクラス

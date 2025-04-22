@@ -4,7 +4,6 @@ import datetime
 from collections import Counter
 import matplotlib.pyplot as plt
 import io
-import os
 
 
 class ServerStats:

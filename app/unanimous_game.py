@@ -1,10 +1,7 @@
 import discord
 from discord import app_commands
 import random
-import asyncio
-import json
-import os
-from datetime import datetime, timedelta
+from datetime import datetime
 
 
 # ゲームの状態を管理するクラス
