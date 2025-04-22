@@ -39,6 +39,14 @@ def setup_help_command(tree):
             inline=False,
         )
 
+        # サーバー統計コマンドの説明を追加
+        embed.add_field(
+            name="/サーバー",
+            value="サーバーの統計情報を表示します\n"
+            "サブコマンド: `統計`(サーバー全体の統計), `ユーザー`(特定ユーザーの情報)",
+            inline=False,
+        )
+
         embed.add_field(
             name="/help", value="このヘルプメッセージを表示します", inline=False
         )
