@@ -3,6 +3,9 @@ import os
 from discord import app_commands
 from dotenv import load_dotenv
 
+# サーバースレッドのインポート
+from server import server_thread
+
 # 自作モジュールのインポート
 from fortune import setup_fortune_command
 from schedule import setup_schedule_command
@@ -56,4 +59,6 @@ if __name__ == "__main__":
     if not token:
         print("エラー: DISCORD_TOKENが設定されていません")
     else:
+        # Koyeb用 サーバー立ち上げ
+        server_thread()
         client.run(token)
