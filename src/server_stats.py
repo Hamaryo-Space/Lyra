@@ -253,9 +253,9 @@ class ServerStats:
                     value=f"グラフの生成に失敗しました: {str(e)}",
                     inline=False,
                 )
-                await interaction.response.send_message(embed=embed)
+                await interaction.response.send_message(embed=embed, silent=True)
         else:
-            await interaction.response.send_message(embed=embed)
+            await interaction.response.send_message(embed=embed, silent=True)
 
 
 # コマンド設定関数
